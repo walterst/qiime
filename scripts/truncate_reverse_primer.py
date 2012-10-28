@@ -24,7 +24,7 @@ script_info={}
 script_info['brief_description']="""Takes a demultiplexed fasta file, finds a specified reverse primer sequence, and truncates this primer and subsequent sequences following the reverse primer."""
 script_info['script_description']="""Takes fasta sequences have already been demultiplexed (via split_libraries.py, denoise_wrapper.py, ampliconnoise.py, etc.), and have fasta labels that are QIIME format, i.e., SampleID_#, this script will use the SampleID and a mapping file with a ReversePrimer column to find the reverse primer by local alignment and remove this and any subsequent sequence in a filtered output fasta file."""
 script_info['script_usage']=[]
-script_info['script_usage'].append(("""Example:""","""Find, truncate reverse primers from the fasta file seqs.fna, write output fasta file to the reverse_primer_removed directory:""","""truncate_reverse_primer.py -f seqs.fna -m Fasting_Map.txt -o reverse_primer_removed/"""))
+script_info['script_usage'].append(("""Example:""","""Find, truncate reverse primers from the fasta file seqs.fna, write output fasta file to the reverse_primer_removed directory:""","""truncate_reverse_primer.py -f seqs.fna -m Mapping_File_Rev_Primer.txt -o reverse_primer_removed/"""))
 script_info['output_description']="""Truncated version of the input fasta file (based on input name with '_reverse_primer_removed' appended) will be generated in the output directory, along with a .log file."""
 script_info['required_options']= [\
     make_option('-f', '--fasta_fp',
