@@ -702,6 +702,8 @@ def check_seqs(fasta_out, fasta_files, starting_ix, valid_map, qual_mappings,
             # check if writing out primer
             write_seq = cres
             
+            # Record sequence length before any modifications
+            raw_seq_lengths[curr_rid] = len(curr_seq)
                        
             if reverse_primers == "truncate_only":
                 try:
@@ -858,9 +860,8 @@ def check_seqs(fasta_out, fasta_files, starting_ix, valid_map, qual_mappings,
             
             curr_ix += 1
             
-            # Record the raw and written seq length of everything passing 
-            # filters
-            raw_seq_lengths[curr_rid] = len(curr_seq)
+            # Record the final sequence length after modifications
+            
             final_seq_lengths[curr_id] = curr_len
             
     
