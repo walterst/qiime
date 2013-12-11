@@ -709,6 +709,27 @@ class QIIMEDependencyFull(QIIMEDependencyBase):
          "Unsupported usearch version. %s is required, but running %s." \
          % ('.'.join(map(str,acceptable_version)), version_string))
          
+    def test_usearch61_supported_version(self):
+        """usearch61 is in path and version is supported """
+        acceptable_version = [(6,1,544),(6,1,544)]
+        self.assertTrue(app_path('usearch61'),
+         "usearch61 not found. This may or may not be a problem depending on "+\
+         "which components of QIIME you plan to use.")
+        command = "usearch61 --version"
+        proc = Popen(command,shell=True,universal_newlines=True,\
+                         stdout=PIPE,stderr=STDOUT)
+        stdout = proc.stdout.read()
+        version_string = stdout.split('v')[1]
+        try:
+            version = tuple(map(int,version_string.split('.')))
+            pass_test = version in acceptable_version
+        except ValueError:
+            pass_test = False
+            version_string = stdout
+        self.assertTrue(pass_test,\
+         "Unsupported usearch61 version. %s is required, but running %s." \
+         % ('.'.join(map(str,acceptable_version)), version_string))
+         
     def test_R_supported_version(self):
         """R is in path and version is supported """
         minimum_version = (2,12,0)
